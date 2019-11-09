@@ -180,14 +180,14 @@ class MyGame(arcade.Window):
 
         # Set up the player
         self.score = 0
-        self.player_sprite = ShipSprite("images/playerShip1_orange.jpg", SCALE)
+        self.player_sprite = ShipSprite("images/playerShip1_orange.jpg", SCALE*.25)
         self.all_sprites_list.append(self.player_sprite)
         self.lives = 3
 
         # Set up the little icons that represent the player lives.
         cur_pos = 10
         for i in range(self.lives):
-            life = arcade.Sprite("images/playerShip1_orange.jpg", SCALE)
+            life = arcade.Sprite("images/playerShip1_orange.jpg", SCALE*.15)
             life.center_x = cur_pos + life.width
             life.center_y = life.height
             cur_pos += life.width
@@ -230,14 +230,14 @@ class MyGame(arcade.Window):
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 70, arcade.color.WHITE, 13)
 
-        output = f"debt Count: {len(self.debt_list)}"
+        output = f"Debt Count: {len(self.debt_list)}"
         arcade.draw_text(output, 10, 50, arcade.color.WHITE, 13)
 
     def on_key_press(self, symbol, modifiers):
         """ Called whenever a key is pressed. """
         # Shoot if the player hit the space bar and we aren't respawning.
         if not self.player_sprite.respawning and symbol == arcade.key.SPACE:
-            bullet_sprite = BulletSprite("images/laser.png", SCALE)
+            bullet_sprite = BulletSprite("images/laser.png", SCALE*.1)
             bullet_sprite.guid = "Bullet"
 
             bullet_speed = 13
@@ -285,8 +285,8 @@ class MyGame(arcade.Window):
         if debt.size == 4:
             for i in range(3):
                 image_no = random.randrange(2)
-                image_list = ["images/shopping.jpg",
-                              "images/doctor.jpg"]
+                image_list = ["images/interest.jpg",
+                              "images/overdraft.jpg"]
 
                 enemy_sprite = DebtSprite(image_list[image_no],
                                               SCALE * .25)
@@ -305,7 +305,7 @@ class MyGame(arcade.Window):
         elif debt.size == 3:
             for i in range(3):
                 image_no = random.randrange(2)
-                image_list = ["images/interest.jpg",
+                image_list = ["images/shopping.jpg",
                               "images/business_loan.jpg"]
 
                 enemy_sprite = DebtSprite(image_list[image_no],
@@ -325,7 +325,7 @@ class MyGame(arcade.Window):
         elif debt.size == 2:
             for i in range(3):
                 image_no = random.randrange(2)
-                image_list = ["images/overdraft.jpg",
+                image_list = ["images/doctor.jpg",
                               "images/lend_borrow.png"]
 
                 enemy_sprite = DebtSprite(image_list[image_no],
