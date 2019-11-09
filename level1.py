@@ -1,5 +1,5 @@
 """
-Debt Smasher (a play on debt Smasher)
+Debt Smasher
 
 Shoot financial debts in this demo program created with
 Python and the Arcade library.
