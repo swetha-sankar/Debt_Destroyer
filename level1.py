@@ -29,7 +29,7 @@ class TurningSprite(arcade.Sprite):
         self.angle = math.degrees(math.atan2(self.change_y, self.change_x))
 
 
-class ShipSprite(arcade.Sprite):
+class SuperwomanSprite(arcade.Sprite):
     def __init__(self, filename, scale):
 
         # Call the parent Sprite constructor
@@ -163,14 +163,14 @@ class MyGame(arcade.Window):
 
         # Set up the player
         self.score = 0
-        self.player_sprite = ShipSprite("images/playerShip1_orange.jpg", SCALE*.5)
+        self.player_sprite = SuperwomanSprite("images/businesswoman.jpg", SCALE * .5)
         self.all_sprites_list.append(self.player_sprite)
         self.lives = 3
 
         # Set up the little icons that represent the player lives.
         cur_pos = 10
         for i in range(self.lives):
-            life = arcade.Sprite("images/playerShip1_orange.jpg", SCALE*.15)
+            life = arcade.Sprite("images/businesswoman.jpg", SCALE*.15)
             life.center_x = cur_pos + life.width
             life.center_y = life.height
             cur_pos += life.width
