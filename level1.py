@@ -136,7 +136,6 @@ class BulletSprite(TurningSprite):
 
 
 
-
 class MyGame(arcade.Window):
     """ Main application class. """
 
@@ -230,7 +229,10 @@ class MyGame(arcade.Window):
         # This command has to happen before we start drawing
         arcade.start_render()
         if self.game_over:
-            arcade.Sprite("images/gameover.jpg", 1).draw()
+            end = arcade.Sprite("images/gameover.jpg", 1)
+            end.center_x = SCREEN_WIDTH/2
+            end.center_y = SCREEN_HEIGHT/2
+            end.draw()
 
         # Draw all the sprites.
         self.all_sprites_list.draw()
@@ -385,7 +387,6 @@ class MyGame(arcade.Window):
                         self.game_over = True
                         print("Game Over")
                         self.on_draw()
-
 
 
 def main():
