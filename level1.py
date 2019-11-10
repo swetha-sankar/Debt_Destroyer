@@ -212,13 +212,6 @@ class MyGame(arcade.Window):
             self.all_sprites_list.append(enemy_sprite)
             self.debt_list.append(enemy_sprite)
 
-    def draw_game_over():
-        """
-        Draw "Game over" across the screen.
-        """
-        output = "Game Over"
-        arcade.draw_text(output, 240, 400, arcade.color.WHITE, 54)
-
     def on_draw(self):
         """
         Render the screen.
