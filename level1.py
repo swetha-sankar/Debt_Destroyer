@@ -23,7 +23,6 @@ BOTTOM_LIMIT = -OFFSCREEN_SPACE
 TOP_LIMIT = SCREEN_HEIGHT + OFFSCREEN_SPACE
 
 
-
 class TurningSprite(arcade.Sprite):
     """ Sprite that sets its angle to the direction it is traveling in. """
     def update(self):
@@ -135,8 +134,6 @@ class BulletSprite(TurningSprite):
             self.remove_from_sprite_lists()
 
 
-
-
 class MyGame(arcade.Window):
     """ Main application class. """
 
@@ -242,7 +239,7 @@ class MyGame(arcade.Window):
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 70, arcade.color.WHITE, 13)
 
-        output = f"Debt Threat Count: {len(self.debt_list)}"
+        output = f"Unresolved Debt Count: {len(self.debt_list)}"
         arcade.draw_text(output, 10, 50, arcade.color.WHITE, 13)
 
     def on_key_press(self, symbol, modifiers):
