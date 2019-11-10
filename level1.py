@@ -1,5 +1,5 @@
 """
-Debt Smasher
+Debt Destroyer
 
 Shoot financial debts in this demo program created with
 Python and the Arcade library.
@@ -16,7 +16,7 @@ SCALE = 0.25
 OFFSCREEN_SPACE = 300
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Debt Smasher"
+SCREEN_TITLE = "Debt Destroyer"
 LEFT_LIMIT = -OFFSCREEN_SPACE
 RIGHT_LIMIT = SCREEN_WIDTH + OFFSCREEN_SPACE
 BOTTOM_LIMIT = -OFFSCREEN_SPACE
