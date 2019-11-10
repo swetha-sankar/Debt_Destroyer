@@ -144,6 +144,7 @@ class MyGame(arcade.Window):
         # directory this .py file is in. You can leave this out of your own
         # code, but it is needed to easily run the examples using "python -m"
         # as mentioned at the top of this program.
+        self.game_won = False
         self.background = None
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
@@ -219,6 +220,11 @@ class MyGame(arcade.Window):
 
         # This command has to happen before we start drawing
         arcade.start_render()
+        if self.game_won:
+            win = arcade.Sprite("images/you_win.jpg", 1)
+            win.center_x = SCREEN_WIDTH/2
+            win.center_y = SCREEN_HEIGHT/2
+            win.draw()
         if self.game_over:
             end = arcade.Sprite("images/gameover.jpg", 1)
             end.center_x = SCREEN_WIDTH/2
@@ -343,6 +349,7 @@ class MyGame(arcade.Window):
                 self.all_sprites_list.append(enemy_sprite)
                 self.debt_list.append(enemy_sprite)
 
+
     def on_update(self, x):
         """ Move everything """
 
@@ -378,6 +385,10 @@ class MyGame(arcade.Window):
                         self.game_over = True
                         print("Game Over")
                         self.on_draw()
+            if len(self.debt_list)==0:
+                self.game_won = True
+                print("Game Won")
+                self.on_draw()
 
 
 def main():
