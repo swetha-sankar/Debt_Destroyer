@@ -397,14 +397,12 @@ class Start(arcade.Window):
         self.start.draw()
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
-        if y > self.start._get_bottom() and y < (
-                self.start._get_bottom() + self.start._get_height()) and x > self.start._get_left() and y < (
-                self.start._get_left() + self.start._get_width()):
+        if y > self.start._get_bottom() and y < (self.start._get_bottom() + self.start._get_height()) and x > self.start._get_left() and x < (self.start._get_left() + self.start._get_width()):
             MyGame().start_new_game()
 
 
 def main():
-    window = Start()
+    window = MyGame()
     window.start_new_game()
     arcade.run()
 
