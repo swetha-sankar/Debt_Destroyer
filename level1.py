@@ -7,7 +7,6 @@ Python and the Arcade library.
 import random
 import math
 import arcade
-import os
 
 from typing import cast
 
@@ -31,13 +30,7 @@ class TurningSprite(arcade.Sprite):
 
 
 class ShipSprite(arcade.Sprite):
-    """
-    Sprite that represents our space ship.
-
-    Derives from arcade.Sprite.
-    """
     def __init__(self, filename, scale):
-        """ Set up the space ship. """
 
         # Call the parent Sprite constructor
         super().__init__(filename, scale)
@@ -121,7 +114,7 @@ class DebtSprite(arcade.Sprite):
 
 class BulletSprite(TurningSprite):
     """
-    Class that represents a bullet.
+    Class that represents brainpower.
 
     Derives from arcade.TurningSprite which is just a Sprite
     that aligns to its direction.
@@ -140,15 +133,7 @@ class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
-        # Set the working directory (where we expect to find files) to the same
-        # directory this .py file is in. You can leave this out of your own
-        # code, but it is needed to easily run the examples using "python -m"
-        # as mentioned at the top of this program.
         self.game_won = False
-        self.background = None
-        file_path = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(file_path)
-
         self.frame_count = 0
 
         self.game_over = False
@@ -349,7 +334,6 @@ class MyGame(arcade.Window):
                 self.all_sprites_list.append(enemy_sprite)
                 self.debt_list.append(enemy_sprite)
 
-
     def on_update(self, x):
         """ Move everything """
 
@@ -385,14 +369,42 @@ class MyGame(arcade.Window):
                         self.game_over = True
                         print("Game Over")
                         self.on_draw()
-            if len(self.debt_list)==0:
+
+            if len(self.debt_list) == 0:
                 self.game_won = True
                 print("Game Won")
                 self.on_draw()
 
 
+class Start(arcade.Window):
+    start = arcade.Sprite("images/coin.jpg", .25)
+    intro = arcade.Sprite("images/intro.jpg", 1)
+
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+    def start_new_game(self):
+        self.on_draw()
+
+    def on_draw(self):
+        arcade.start_render()
+        self.intro.center_x = SCREEN_WIDTH / 2
+        self.intro.center_y = SCREEN_HEIGHT / 2
+        self.intro.draw()
+
+        self.start.center_x = SCREEN_WIDTH / 2
+        self.start.center_y = SCREEN_HEIGHT / 4
+        self.start.draw()
+
+    def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
+        if y > self.start._get_bottom() and y < (
+                self.start._get_bottom() + self.start._get_height()) and x > self.start._get_left() and y < (
+                self.start._get_left() + self.start._get_width()):
+            MyGame().start_new_game()
+
+
 def main():
-    window = MyGame()
+    window = Start()
     window.start_new_game()
     arcade.run()
 
